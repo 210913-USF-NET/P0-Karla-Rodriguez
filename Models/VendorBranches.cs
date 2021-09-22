@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -10,6 +11,6 @@ namespace Models
 
         public string GrandCompany {get; set;} 
 
-        
+        public List<Inventory> Inventories {get; set;}
     }
 }

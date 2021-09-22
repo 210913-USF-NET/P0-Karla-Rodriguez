@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace Models
 {
     public class Customers
@@ -19,6 +19,8 @@ namespace Models
         public string FirstName {get; set;}
 
         public string LastName {get; set;}
+
+        public List<Orders> Orders {get; set;}
 
     }
 }

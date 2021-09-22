@@ -1,3 +1,6 @@
+using DL;
+using BL;
+
 namespace UI
 {
     public class MenuFactory
@@ -9,17 +12,16 @@ namespace UI
                 case "Main":
                     return new MainMenu();
                     
-                case "Purchase Items":
-                    return new ItemsMenu();
+
                     
                 case "Feed":
-                    return new FeedMenu();
+                    return new FeedMenu(new BL(new FileRepo()));
                     
                 case "Manuals 1":
-                    return new ManualsIMenu();
+                    return new ManualsIMenu(new BL(new FileRepo()));
                     
                 case "Manuals 2":
-                    return new ManualsIIMenu();
+                    return new ManualsIIMenu(new BL(new FileRepo()));
                 default:
                     return null;
             )

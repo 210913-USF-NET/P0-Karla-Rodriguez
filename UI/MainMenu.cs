@@ -1,32 +1,48 @@
 using System;
+using Models;
+using DL;
+using BL;
 namespace UI
 {
-    public class MainMenu
+    public class MainMenu : IMenu
     {
-        public void Start ()
+        public void Start()
         {
             bool exit = false;
+            string input "";
             do
-
+            //need to implement a login somewhere
             {
                 Console.WriteLine("Welcome to the Chocobo Square!");
-                Console.WriteLine("Are you a registered racer?");
-                Console.WriteLine("0 - Yes");
-                Console.WriteLine("1 - No");
+                Console.WriteLine("What items are you interested in?");
+                Console.WriteLine("0 - Feed");
+                Console.WriteLine("1 - Race Manual I");
+                Console.WriteLine("2 - Race Manuals II");
                 Console.WriteLine("x - Exit");
                 
-                switch (Console.ReadLine())
-                {
-                    case "0";
-                        //ManuFactorytime, but I want to ask their name first
+                input = Console.ReadLine();
 
-                    case "1";
-                        //Ask them to register their name onto the database
+                switch (input)
+                {
+                    case "0":
+                        MenuFactory.GetMenu("Feed").Start();
+                        break;
+
+                    case "1":
+                        MenuFactory.GetMenu("Manuals 1").Start();
+                        break;
                     
-                    case "x";
-                        //exit message and then leave the application
+                    case "2":
+                        MenuFactory.GetMenu("Manuals 2").Start();
+                        break;
+                        
+                    case "x":
+                        Console.WriteLine("Until next time!");
+                        exit = true;
+                        break;
+                        
                 }
-            }
+            } while (!exit);
         }
     }
 }

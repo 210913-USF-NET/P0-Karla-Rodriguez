@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 namespace DL
 {
-    public class IRepo
+    public interface IRepo
     {
-        List<VendorBranches> GetAllVendorBranches();
+            Customers AddCustomers(Customers custo);
+            List<Customers> GetAllCustomers();
+
+            Customers UpdateCustomers(Customers customerToUpdate);
     }
 }

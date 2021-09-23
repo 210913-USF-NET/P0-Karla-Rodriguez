@@ -1,7 +1,7 @@
 using System;
 using Models;
 using DL;
-using BL;
+using P0BL;
 namespace UI
 {
     public class MainMenu : IMenu
@@ -9,15 +9,14 @@ namespace UI
         public void Start()
         {
             bool exit = false;
-            string input "";
+            string input = "";
             do
             //need to implement a login somewhere
             {
                 Console.WriteLine("Welcome to the Chocobo Square!");
-                Console.WriteLine("What items are you interested in?");
-                Console.WriteLine("0 - Feed");
-                Console.WriteLine("1 - Race Manual I");
-                Console.WriteLine("2 - Race Manuals II");
+                Console.WriteLine("Are you a registered racer?");
+                Console.WriteLine("0 - Yes");
+                Console.WriteLine("1 - No");
                 Console.WriteLine("x - Exit");
                 
                 input = Console.ReadLine();
@@ -25,15 +24,11 @@ namespace UI
                 switch (input)
                 {
                     case "0":
-                        MenuFactory.GetMenu("Feed").Start();
+                        MenuFactory.GetMenu("Login").Start();
                         break;
 
                     case "1":
-                        MenuFactory.GetMenu("Manuals 1").Start();
-                        break;
-                    
-                    case "2":
-                        MenuFactory.GetMenu("Manuals 2").Start();
+                        MenuFactory.GetMenu("Register").Start();
                         break;
                         
                     case "x":

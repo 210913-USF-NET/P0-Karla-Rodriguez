@@ -10,5 +10,10 @@ namespace DL
             List<Customers> GetAllCustomers();
 
             Customers UpdateCustomers(Customers customerToUpdate);
+        List<Customers> SearchCustomers(string queryStr);
+
+        Orders AddOrder(Orders order);
+
+        Customers GetOneCustomerById(int id);
     }
 }

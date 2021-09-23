@@ -1,5 +1,6 @@
 ﻿using System;
-using Models;
+using System.Diagnostics;
+using Serilog;
 
 namespace UI
 {
@@ -7,6 +8,8 @@ namespace UI
     {
         static void Main(string[] args)
         {
-        
+            
+        }
     }
 }
+

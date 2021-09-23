@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using Models;
 
-namespace BL
+namespace P0BL
 {
     public interface IBL
     {
-        List<VendorBranches> GetVendorBranches();
+        List<Customers> GetAllCustomers();
+
+        Customers AddCustomers(Customers custo);
+
+        Customers UpdateCustomers(Customers customerToUpdate);
+
+        List<Customers> SearchCustomers(string quertStr);
+
+        Orders AddOrder(Orders orders);
+
+        Customers GetOneCustomerById(int id);
     }
 }

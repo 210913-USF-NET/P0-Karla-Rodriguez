@@ -1,6 +1,6 @@
 namespace UI
 {
-    public class IMenu
+    public interface IMenu
     {
         void Start();
         

@@ -1,6 +1,6 @@
 namespace UI
 {
-    public class ManualsIMenu
+    public class LocationMenu
     {
         
     }

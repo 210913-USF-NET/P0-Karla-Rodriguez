@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Models;
+using Serilog;
 
 namespace Models
 {
     public class Customers
     {
-        public Customers() {}
+        public Customers() {
+            Log.Debug("Customer model constructor situation..");
+        }
 
         public Customers(string firstname) 
         {
@@ -23,9 +25,62 @@ namespace Models
         }
 
         public int CustomerId {get; set;}
-        public string FirstName {get; set;}
-        public string LastName {get; set;}
+
+        private string _firstname;
         
+        public string FirstName
+        {
+            get
+            {
+                return _firstname;
+            }
+            set
+            {
+                Regex pattern = new Regex("[a-zA-Z]");
+
+                if (value.Length == 0)
+                {
+                    InputInvalidException e = new InputInvalidException("Sorry, you have to have a first name!");
+                    Log.Warning(e.Message);
+                    throw e;
+                }
+                else if(!pattern.IsMatch(value))
+                {
+                    throw new InputInvalidException("Registered names have to stick to letters only, sorry!");
+                }
+                else{
+                    _firstname = value;
+                }
+            }
+        }
+
+        private string _lastname;
+        
+        public string LastName
+        {
+            get
+            {
+                return _lastname;
+            }
+            set
+            {
+                Regex pattern = new Regex("[a-zA-Z]");
+
+                if (value.Length == 0)
+                {
+                    InputInvalidException e = new InputInvalidException("Sorry, you have to have a last name too!");
+                    Log.Warning(e.Message);
+                    throw e;
+                }
+                else if(!pattern.IsMatch(value))
+                {
+                    throw new InputInvalidException("Again, only letters please!");
+                }
+                else{
+                    _lastname = value;
+                }
+            }
+        }
 
                 
 

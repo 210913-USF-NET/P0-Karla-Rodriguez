@@ -25,10 +25,14 @@ namespace UI
                     return new LoginMenu(new BL(new DBRepo(context)));
                 case "register":
                     return new RegisterMenu(new BL(new DBRepo(context)));
-                case "location":
-                    return new LocationMenu(new BL(new DBRepo(context)));
-                case "items":
-                    return new ItemsMenu(new BL(new DBRepo(context)));
+
+                    
+                //case "location":
+                    //return new LocationMenu(new BL(new DBRepo(context)));
+                //case "items":
+                    //return new ItemsMenu(new BL(new DBRepo(context)));
+                
+
                     default:
                     return null;
             }

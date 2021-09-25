@@ -3,6 +3,7 @@ using Models;
 using P0BL;
 using System.Collections.Generic;
 
+
 namespace UI
 {
     public class RegisterMenu : IMenu
@@ -54,7 +55,7 @@ namespace UI
             newCusto.LastName = Console.ReadLine();
 
             Customers addedCusto = _bl.AddCustomers(newCusto);
-            Console.WriteLine($"Hello {addedCusto}!");
+            Console.WriteLine($"{addedCusto} is all set!");
         }
         
     }

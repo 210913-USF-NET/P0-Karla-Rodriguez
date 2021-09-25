@@ -15,8 +15,28 @@ namespace UI
             
         }
         public void Start(){
-
+            bool exit = false;
+            do
+            {
+                Console.Clear();
                 Console.WriteLine("Welcome back! Please enter your racer's full name to continue");
+                Console.WriteLine("0 - Enter Information");
+                Console.WriteLine("z - Go Back");
+                Console.WriteLine("x - Exit");
+                switch(Console.ReadLine())
+                {
+                    case "0":
+                    ViewOneCustomer();
+                    break;
+                    case "z":
+                    MenuFactory.GetMenu("main");
+                    break;
+                    case "x":
+                    exit = true;
+                    break;
+                }
+            } while(!exit);
+                
 
                 
                 

@@ -24,15 +24,15 @@ namespace UI
                 switch (input)
                 {
                     case "0":
-                        MenuFactory.GetMenu("Login").Start();
+                        MenuFactory.GetMenu("login").Start();
                         break;
 
                     case "1":
-                        MenuFactory.GetMenu("Register").Start();
+                        MenuFactory.GetMenu("register").Start();
                         break;
                         
                     case "x":
-                        Console.WriteLine("Until next time!");
+                        Console.WriteLine("Another time then!");
                         exit = true;
                         break;
                         

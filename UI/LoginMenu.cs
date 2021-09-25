@@ -8,34 +8,40 @@ namespace UI
     public class LoginMenu : IMenu
     {
         private IBL _bl;
-        private LoginMenu(IBL bl)
+        private CustomerService _custoService;
+        public LoginMenu(IBL bl)
         {
             _bl = bl;
-            _custoService = custoService;
+            
         }
         public void Start(){
 
                 Console.WriteLine("Welcome back! Please enter your racer's full name to continue");
+
+                
                 
             } 
             private void ViewOneCustomer()
             {
-                Console.WriteLine("Login");
-                List<Customers> searchResult = _bl.searchCustomers(Console.ReadLine());
+                Console.WriteLine("Search the registry for your name");
+                List<Customers> searchResult = _bl.SearchCustomers(Console.ReadLine());
                 if(searchResult == null || searchResult.Count == 0)
                 {
                     Console.WriteLine("That racer does not exist :(");
                     return;
                 }
-                Customers selectedCustomer = _bl.GetOneCustomerById(selectedCustomer.Id);
                 
-                selectedCustomer = _bl.GetOneCustomerById(selectedCustomer.Id);
+                Customers  selectedCustomer = _custoService.SelectCustomers("Enter you name", searchResult);
+
+                selectedCustomer = _bl.GetOneCustomerById(selectedCustomer.CustomerId);
+                
+                selectedCustomer = _bl.GetOneCustomerById(selectedCustomer.CustomerId);
                 Console.WriteLine(selectedCustomer);
-                foreach(Order order in (selectedCustomer.Orders)
+                foreach(Orders order in selectedCustomer.Orders)
                 {
                     Console.WriteLine(order);
                 }
             }
+
         }
     }
-}

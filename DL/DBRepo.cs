@@ -22,9 +22,9 @@ namespace DL
         
         public Model.Customers AddCustomers(Model.Customers custo)
         {
-            Entity.Customer restoToAdd = new Entity.Customer(){
+            Entity.Customer custoToAdd = new Entity.Customer(){
                 FirstName = custo.FirstName,
-                LastName = custo.Lastname
+                LastName = custo.LastName
                 
             };
             
@@ -39,9 +39,9 @@ namespace DL
 
             return new Model.Customers()
             {
-                Id = custoToAdd.Id,
-                FirstName = restoToAdd.FirstName,
-                LastName = restoToAdd.LastName,
+                CustomerId = custoToAdd.Id,
+                FirstName = custoToAdd.FirstName,
+                LastName = custoToAdd.LastName,
                 
             };
         }
@@ -51,7 +51,7 @@ namespace DL
             
             return _context.Customers.Select(
                 customer => new Model.Customers() {
-                    Id = customer.Id,
+                    CustomerId = customer.Id,
                     FirstName = customer.FirstName,
                     LastName = customer.LastName
                 }
@@ -62,19 +62,19 @@ namespace DL
 
         public Model.Customers UpdateCustomers(Model.Customers customerToUpdate)
         {
-            Entity.Customer customerToUpdate = new Entity.Customer() {
-                Id = customerToUpdate.Id,
+            Entity.Customer customersToUpdate = new Entity.Customer() {
+                Id = customerToUpdate.CustomerId,
                 FirstName = customerToUpdate.FirstName,
                 LastName = customerToUpdate.LastName
                 
             };
 
-            customerToUpdate = _context.Customers.Update(customerToUpdate).Entity;
+            customersToUpdate = _context.Customers.Update(customersToUpdate).Entity;
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
 
             return new Model.Customers() {
-                Id = customerToUpdate.Id,
+                CustomerId = customerToUpdate.CustomerId,
                 FirstName = customerToUpdate.FirstName,
                 LastName = customerToUpdate.LastName
                 
@@ -83,11 +83,11 @@ namespace DL
 
         public List<Model.Customers> SearchCustomers(string queryStr)
         {
-            return _context.Customer.Where(
+            return _context.Customers.Where(
                 custo => custo.FirstName.Contains(queryStr) || custo.LastName.Contains(queryStr) 
             ).Select(
                 c => new Model.Customers(){
-                    Id = c.Id,
+                    CustomerId = c.Id,
                     FirstName = c.FirstName,
                     LastName = c.LastName,
                     
@@ -97,18 +97,18 @@ namespace DL
 
         public Model.Orders AddOrder(Model.Orders order)
         {
-            Entity.Orders orderToAdd = new Entity.Orders(){
+            Entity.Order orderToAdd = new Entity.Order(){
                 CustomerId = order.CustomerId,
-                VendorId = order.VendorId,
-                RestaurantId = order.RestaurantId
+                
+
             };
             orderToAdd = _context.Orders.Add(orderToAdd).Entity;
             _context.SaveChanges();
 
             return new Model.Orders() {
-                Id = orderToAdd.Id,
-                CustomerId = orderToAdd.CustomerId,
-                VendorId = orderToAdd.VendorId
+                OrderId = orderToAdd.Id,
+                CustomerId = orderToAdd.Id,
+                
             };
         }
 
@@ -116,19 +116,19 @@ namespace DL
         public Model.Customers GetOneCustomerById(int id)
         {
             Entity.Customer custoById = 
-                _context.Customer
+                _context.Customers
                 
                 .Include(c => c.Orders)
                 .FirstOrDefault(c => c.Id == id);
 
             return new Model.Customers() {
-                Id = custoById.Id,
+                CustomerId = custoById.Id,
                 FirstName = custoById.FirstName,
                 LastName = custoById.LastName,
                 Orders = custoById.Orders.Select(c => new Model.Orders(){
-                    Id = c.Id,
-                    CustomerId = c.CustomerId,
-                    VendorId = c.VendorId
+                    OrderId = c.Id,
+                    CustomerId = c.Id,
+                    
                 }).ToList()
             };
         }

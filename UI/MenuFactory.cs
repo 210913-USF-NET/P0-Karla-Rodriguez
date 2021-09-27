@@ -14,7 +14,7 @@ namespace UI
         {
 
             string connectionString = File.ReadAllText(@"../connectionString.txt");
-            Console.WriteLine(connectionString);
+            
             DbContextOptions<P0DBContext> options = new DbContextOptionsBuilder<P0DBContext>()
             .UseSqlServer(connectionString).Options;
             P0DBContext context = new P0DBContext(options);
@@ -27,10 +27,9 @@ namespace UI
                     return new LoginMenu(new BL(new DBRepo(context)), new CustomerService());
                 case "register":
                     return new RegisterMenu(new BL(new DBRepo(context)));
-
                     
-                //case "location":
-                    //return new LocationMenu(new BL(new DBRepo(context)));
+                case "location":
+                    return new LocationMenu(new BL(new DBRepo(context)));
                 //case "items":
                     //return new ItemsMenu(new BL(new DBRepo(context)));
                 

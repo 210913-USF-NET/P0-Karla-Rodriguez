@@ -17,7 +17,7 @@ namespace UI
         bool exit = false;
         do
         {
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("Ready to hit the race track?");
             Console.WriteLine("0 - Register today!");
             Console.WriteLine("x - Go Back");

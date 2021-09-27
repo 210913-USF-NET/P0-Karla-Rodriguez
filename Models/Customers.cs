@@ -16,11 +16,11 @@ namespace Models
             this.FirstName = firstname;
         }
         
-        public Customers(string firstname, string lastname, int customerid) 
+        public Customers(string firstname, string lastname, int customerId) 
         {
             this.FirstName = firstname;
             this.LastName = lastname;
-            this.CustomerId = customerid;
+            this.CustomerId = customerId;
             
         }
 

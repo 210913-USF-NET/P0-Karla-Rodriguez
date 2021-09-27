@@ -20,7 +20,7 @@ namespace UI
             bool exit = false;
             do
             {
-                //Console.Clear();
+                Console.Clear();
                 Console.WriteLine("Welcome back! Please enter your racer's full name to continue");
                 Console.WriteLine("0 - Enter Information");
                 Console.WriteLine("x - Go Back");
@@ -43,7 +43,7 @@ namespace UI
             } 
             private void ViewOneCustomer()
             {
-                Console.WriteLine("Search the registry for your name");
+                Console.WriteLine("Search the registry for your first name");
                 List<Customers> searchResult = _bl.SearchCustomers(Console.ReadLine());
                 if(searchResult == null || searchResult.Count == 0)
                 {

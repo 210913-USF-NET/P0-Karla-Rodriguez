@@ -38,5 +38,16 @@ namespace P0BL
         {
             return _repo.GetOneCustomerById(id);
         }
+
+        public List<Products> GetAllProducts()
+        {
+            return _repo.GetAllProducts();
+        }
+
+
+        public List<Products> SearchProducts(string queryStr)
+        {
+            return _repo.SearchProducts(queryStr);
+        }
     }
 }

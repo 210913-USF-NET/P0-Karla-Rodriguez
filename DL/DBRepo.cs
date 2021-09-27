@@ -132,5 +132,34 @@ namespace DL
                 }).ToList()
             };
         }
-    }
+
+        public List<Model.Products> GetAllProducts()
+        {
+            
+            return _context.Products.Select(
+                product => new Model.Products() {
+                    ProductId = product.Id,
+                    Name = product.Name,
+                    Price = (decimal)product.Price,
+                    Description = product.Description
+                }
+            ).ToList();
+            
+        }
+
+        public List<Model.Products> SearchProducts(string queryStr)
+        {
+            return _context.Products.Where(
+                prod => prod.Name.Contains(queryStr) ||  prod.Description.Contains(queryStr)
+            ).Select(
+                p => new Model.Products(){
+                    Name = p.Name,
+                    Price = (decimal)p.Price, 
+                    Description = p.Description,
+                    
+                }
+            ).ToList();
+        }
+
+}
 }

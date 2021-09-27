@@ -15,5 +15,11 @@ namespace DL
         Orders AddOrder(Orders order);
 
         Customers GetOneCustomerById(int id);
+
+        List<Products> GetAllProducts();
+
+        List<Products> SearchProducts(string queryStr);
+
+        
     }
 }

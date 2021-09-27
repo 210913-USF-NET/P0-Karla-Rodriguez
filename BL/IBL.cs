@@ -17,5 +17,11 @@ namespace P0BL
         Orders AddOrder(Orders orders);
 
         Customers GetOneCustomerById(int id);
+
+        List<Products> GetAllProducts();
+
+        List<Products> SearchProducts(string queryStr);
+
+        
     }
 }

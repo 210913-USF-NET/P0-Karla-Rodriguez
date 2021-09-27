@@ -17,18 +17,17 @@ namespace UI
         bool exit = false;
         do
         {
-            Console.WriteLine(" 0 - Become a registered racer!");
-            Console.WriteLine("z - Go Back");
-            Console.WriteLine("x - Exit");
+            //Console.Clear();
+            Console.WriteLine("Ready to hit the race track?");
+            Console.WriteLine("0 - Register today!");
+            Console.WriteLine("x - Go Back");
 
             switch(Console.ReadLine())
             {
                 case "0":
                 CreateCustomer();
                 break;
-                case "1":
-                MenuFactory.GetMenu("main");
-                break;
+                
                 case "x":
                 exit = true;
                 break;

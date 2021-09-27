@@ -8,29 +8,29 @@ namespace UI
     public class LoginMenu : IMenu
     {
         private IBL _bl;
+
         private CustomerService _custoService;
-        public LoginMenu(IBL bl)
+        public LoginMenu(IBL bl, CustomerService custoService)
         {
             _bl = bl;
+            _custoService = custoService;
             
         }
         public void Start(){
             bool exit = false;
             do
             {
-                Console.Clear();
+                //Console.Clear();
                 Console.WriteLine("Welcome back! Please enter your racer's full name to continue");
                 Console.WriteLine("0 - Enter Information");
-                Console.WriteLine("z - Go Back");
-                Console.WriteLine("x - Exit");
+                Console.WriteLine("x - Go Back");
+                
                 switch(Console.ReadLine())
                 {
                     case "0":
                     ViewOneCustomer();
                     break;
-                    case "z":
-                    MenuFactory.GetMenu("main");
-                    break;
+
                     case "x":
                     exit = true;
                     break;

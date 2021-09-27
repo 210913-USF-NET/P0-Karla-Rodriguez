@@ -6,7 +6,7 @@ using Models;
 
 namespace UI
 {
-    public class CustomerService
+    public class CustomerService 
     {
         public Customers SelectCustomers(string prompt, List<Customers> listToPick)
         {

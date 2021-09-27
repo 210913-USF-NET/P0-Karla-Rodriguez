@@ -13,6 +13,7 @@ namespace UI
             do
             //need to implement a login somewhere
             {
+                //Console.Clear();
                 Console.WriteLine("Welcome to the Chocobo Square!");
                 Console.WriteLine("Are you a registered racer?");
                 Console.WriteLine("0 - Yes");

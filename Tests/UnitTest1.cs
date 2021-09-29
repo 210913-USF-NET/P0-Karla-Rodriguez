@@ -30,6 +30,33 @@ namespace Tests
         }
 
         [Fact]
+        public void ProductsShouldSetValidData()
+        {
+            //Arrange
+            Products test = new Products();
+            string testName = "test products";
+
+            //Act
+            test.Name = testName;
+
+            //Assert
+            Assert.Equal(testName, test.Name);
+        }
+
+        [Fact]
+        public void LocationsShouldSetValidData()
+        {
+            //Arrange
+            VendorBranches test = new VendorBranches();
+            string testName = "test locations";
+
+            //Act
+            test.Name = testName;
+
+            //Assert
+            Assert.Equal(testName, test.Name);
+        }        
+        [Fact]
         public void OrdersShouldCreate()
         {
             //Arrange & Act
@@ -42,24 +69,23 @@ namespace Tests
         [InlineData("")]
         [InlineData("123567890")]
         [InlineData("%$@^^")]
-        public void CustomersShouldNotAllowInvalidName(string input)
+        public void CustomersShouldNotSetInvalidChars(string input)
         {
-            //Arrange
             Customers test = new Customers();
-            
-            //Assert 
-            Assert.Throws<InputInvalidException>(() => test.FirstName = input);
+
+            Assert.Throws<InputInvalidException>(()=>test.FirstName = input);
         }
 
         [Theory]
-        [InlineData(-1)]
-        [InlineData(0)]
-        [InlineData(10000)]
-        public void OrdersShouldNotSetInvalidTotals(int input)
+        [InlineData("")]
+        [InlineData("123567890")]
+        [InlineData("%$@^^")]
+        public void SurNameShouldNotSetInvalidChars(string input)
         {
-            Orders test = new Orders();
+            Customers test = new Customers();
 
-            Assert.Throws<InputInvalidException>(() => test.Totals = input);
+            Assert.Throws<InputInvalidException>(()=>test.LastName = input);
         }
+
     }
 }

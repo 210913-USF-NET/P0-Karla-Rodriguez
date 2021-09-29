@@ -8,7 +8,7 @@ namespace Models
     public class Customers
     {
         public Customers() {
-            Log.Debug("Searching..");
+            Log.Debug("Customer Data Found");
         }
 
         public Customers(string firstname) 

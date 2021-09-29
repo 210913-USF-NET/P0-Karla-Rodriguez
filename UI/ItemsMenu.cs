@@ -115,11 +115,12 @@ namespace UI
             }
             finally
             {
-                Orders addedOrder = _bl.AddOrder(orderToAdd);
+                
+            }
+            Orders addedOrder = _bl.AddOrder(orderToAdd);
                 Console.WriteLine("Order Processed successfully");
                 Console.WriteLine(addedOrder);
                 Console.ReadLine();
-            }
         }
     }
 }

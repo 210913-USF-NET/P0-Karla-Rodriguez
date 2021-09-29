@@ -33,15 +33,15 @@ namespace UI
         }
         public Products SelectAProduct(string prompt, List<Products> listToPick)
         {
-        SelectOrder:
+        selectProduct:
             Console.WriteLine(prompt);
             for (int i = 0; i < listToPick.Count; i++)
             {
                 Console.WriteLine($"[{i}] {listToPick[i]}");
             }
-
             // Keep moving
             return listToPick[0];
+        
         }
 
         public VendorBranches SelectBranch(string prompt, List<VendorBranches> listToPick)

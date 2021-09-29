@@ -42,6 +42,11 @@ namespace UI
             inputFirstName:
             Console.WriteLine("First Name:");
             string firstname = Console.ReadLine();
+            /// <summary>
+            /// Unit testing successful, and users consistently created
+            /// No data missing
+            /// </summary>
+            /// <value></value>
             try
             {
                 newCusto.FirstName = firstname;

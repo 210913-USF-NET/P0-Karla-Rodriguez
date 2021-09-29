@@ -15,10 +15,6 @@ namespace DL
         {
             _context = context;
         }
-        //private void Seed()
-            //{
-                //using(Entity.P0DBContext context = new Entity.P0DBContext())
-            //}
         
         public Model.Customers AddCustomers(Model.Customers custo)
         {

@@ -11,7 +11,7 @@ namespace UI
             bool exit = false;
             string input = "";
             do
-            //need to implement a login somewhere
+            
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to the Chocobo Square!");

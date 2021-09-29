@@ -29,7 +29,7 @@ namespace UI
             {
                 Console.Clear();
                 Console.WriteLine("Shop for items for your feathered friend!");
-                Console.WriteLine("0 - Show Me Everything For Sale");
+                Console.WriteLine("0 - Show Me Everything in the Inventory!");
                 Console.WriteLine("1 - I'm Ready to Place and Order!");
                 Console.WriteLine("x - Go Back");
 
@@ -53,20 +53,20 @@ namespace UI
             List<Products> allProds = _bl.GetAllProducts();
             if(allProds.Count == 0)
             {
-                Console.WriteLine("Uh oh! We'll try to restock soon!");
+                Console.WriteLine("Uh oh! Looks like we sold out of everything!");
             }
             else
             {
                 foreach (Products prods in allProds)
                 {
-                    Console.WriteLine(prods.ToString());
+                    Console.WriteLine(prods.ToString());                  
                 }
             } Console.WriteLine("Hit Enter To Return To The Menu");
             Console.ReadLine();
         }
         private void AddOrder()
         {
-            Console.WriteLine("Search firstname");
+            Console.WriteLine("Search the registry for your first name!");
             List<Customers> searchResult = _bl.SearchCustomers(Console.ReadLine());
             if(searchResult == null || searchResult.Count == 0)
             {
@@ -86,20 +86,20 @@ namespace UI
                 Console.WriteLine("Couldn't find anything like that...try again!");
                 return;
             }
-                Products selectedProducts  = _prodService.SelectAProduct ("Looks like it's available!", searchResultProd);
+            
+            Products selectedProducts  = _prodService.SelectAProduct ("You're ready for checkout!!", searchResultProd);
+            
             
             Orders orderToAdd = new Orders();
             orderToAdd.CustomerId = selectedCustomer.CustomerId;
             orderToAdd.ProductId = selectedProducts.ProductId;
+
             order:
             int userOrder;
             bool success = int.TryParse(Console.ReadLine(), out userOrder);
             if(!success) 
             {
             
-                Console.WriteLine("Invalid input");
-                Console.ReadLine();
-                goto order;
             }
             try
             {
@@ -110,17 +110,16 @@ namespace UI
             {
                 
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Invalid input");
                 goto order;
             }
             finally
             {
-                
+                Orders addedOrder = _bl.AddOrder(orderToAdd);
+                Console.WriteLine("Order Processed successfully");
+                Console.WriteLine(addedOrder);
+                Console.ReadLine();
             }
-            
-            Orders addedOrder = _bl.AddOrder(orderToAdd);
-            Console.WriteLine("Order Processed successfully");
-            Console.WriteLine(addedOrder);
-            Console.ReadLine();
         }
     }
 }

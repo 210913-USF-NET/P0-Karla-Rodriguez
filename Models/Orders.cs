@@ -31,7 +31,7 @@ namespace Models
 
         public override string ToString()
         {
-            return $"Id: {this.OrderId},\n Customer: {this.CustomerId},\n VendorBranch:{this.VendorId},\n Total: {this.Totals}";
+            return $"Thank you for your purchase!";
         }
     }
 }

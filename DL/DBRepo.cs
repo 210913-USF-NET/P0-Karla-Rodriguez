@@ -108,7 +108,7 @@ namespace DL
             return new Model.Orders() {
                 OrderId = orderToAdd.Id,
                 CustomerId = orderToAdd.Id,
-                //ProductsId = orderToAdd.Id <-- at some point soon, make sure something actually gets ordered 
+                ProductId = orderToAdd.Id
             };
         }
 

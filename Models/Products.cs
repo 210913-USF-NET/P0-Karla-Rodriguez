@@ -26,8 +26,11 @@ namespace Models
 
         public override string ToString()
         {
-            return $"\nName: {this.Name},\n Price: {this.Price},\n Description: {this.Description}, \n id: {this.ProductId}";
+            //get quant
+            //quant--;
+            //write to database
 
+            return $"\nName: {this.Name},\n Price: {this.Price},\n Description: {this.Description}";
         }
         
     }

@@ -12,7 +12,7 @@ namespace P0BL
 
         Customers UpdateCustomers(Customers customerToUpdate);
 
-        List<Customers> SearchCustomers(string quertStr);
+        List<Customers> SearchCustomers(string queryStr);
 
         Orders AddOrder(Orders orders);
 

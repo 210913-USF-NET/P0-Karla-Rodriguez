@@ -8,7 +8,7 @@ namespace Models
     public class Customers
     {
         public Customers() {
-            Log.Debug("Customer model constructor situation..");
+            Log.Debug("Searching..");
         }
 
         public Customers(string firstname) 
@@ -46,7 +46,7 @@ namespace Models
                 }
                 else if(!pattern.IsMatch(value))
                 {
-                    throw new InputInvalidException("Registered names have to stick to letters only, sorry!");
+                    throw new InputInvalidException("Registered names have to stick to some letters, sorry!");
                 }
                 else{
                     _firstname = value;
@@ -74,7 +74,7 @@ namespace Models
                 }
                 else if(!pattern.IsMatch(value))
                 {
-                    throw new InputInvalidException("Again, only letters please!");
+                    throw new InputInvalidException("Again, some letters please!");
                 }
                 else{
                     _lastname = value;

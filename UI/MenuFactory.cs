@@ -10,6 +10,7 @@ namespace UI
 {
     public class MenuFactory
     {
+        
         public static IMenu GetMenu(string menuString)
         {
 
@@ -23,19 +24,16 @@ namespace UI
             {
                 case "main":
                     return new MainMenu();
-                case "login":
-                    return new LoginMenu(new BL(new DBRepo(context)), new CustomerService());
                 case "register":
                     return new RegisterMenu(new BL(new DBRepo(context)));
-                    
                 case "location":
                     return new LocationMenu(new BL(new DBRepo(context)));
-                //case "items":
-                    //return new ItemsMenu(new BL(new DBRepo(context)));
-                
-
+                case "items":
+                    return new ItemsMenu(new BL(new DBRepo(context)), new CustomerService(), new CustomerService());
                     default:
                     return null;
+                    
+            
             }
 
         }

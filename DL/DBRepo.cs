@@ -108,7 +108,7 @@ namespace DL
             return new Model.Orders() {
                 OrderId = orderToAdd.Id,
                 CustomerId = orderToAdd.Id,
-                
+                //ProductsId = orderToAdd.Id <-- at some point soon, make sure something actually gets ordered 
             };
         }
 
@@ -133,6 +133,19 @@ namespace DL
             };
         }
 
+
+            public Models.Inventory UpdateInventory(Models.Inventory invToupdate)
+        {
+            Entity.Inventory invtoAdd = new Entity.Inventory();
+            invtoAdd.ProductId = invToupdate.ProductId;
+            invtoAdd.VendorId = invToupdate.VendorId;
+            invtoAdd.Quantity = invToupdate.Quantity;
+            
+            _context.Inventories.Update(invtoAdd);
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+            return invToupdate;
+        }
         public List<Model.Products> GetAllProducts()
         {
             
@@ -144,7 +157,6 @@ namespace DL
                     Description = product.Description
                 }
             ).ToList();
-            
         }
 
         public List<Model.Products> SearchProducts(string queryStr)
@@ -156,10 +168,51 @@ namespace DL
                     Name = p.Name,
                     Price = (decimal)p.Price, 
                     Description = p.Description,
-                    
                 }
             ).ToList();
         }
+        public Model.VendorBranches SelectBranch(int id)
+        {
+            Entity.VendorBranch vendorById = _context.VendorBranches
+            .Include("Inventory")
+            .FirstOrDefault(v => v.Id == id);
+            return new Model.VendorBranches()
+            {
+                VendorId = vendorById.Id,
+                Name = vendorById.Name,
+                CityState = vendorById.CityState
+            };
+        }
 
-}
-}
+            public List<Model.VendorBranches> GetAllVendorBranches()
+        {
+            
+            return _context.VendorBranches.Select(
+                vendor => new Model.VendorBranches() {
+                    VendorId = vendor.Id,
+                    Name = vendor.Name,
+                    CityState = vendor.CityState
+                }
+            ).ToList();
+        }
+    
+        public Model.Products GetOneProductById(int id)
+        {
+            Entity.Product prodById = 
+                _context.Products
+                
+                .FirstOrDefault(prod => prod.Id == id);
+                
+
+            return new Model.Products() {
+                ProductId = prodById.Id,
+                Name = prodById.Name,
+                Price = (decimal)prodById.Price,
+                Description = prodById.Description,
+                        
+                    
+                };
+            }
+        }
+    }
+

@@ -18,10 +18,19 @@ namespace P0BL
 
         Customers GetOneCustomerById(int id);
 
+        Products GetOneProductById(int id);
+
+        Inventory UpdateInventory(Inventory invToupdate);
+
         List<Products> GetAllProducts();
 
         List<Products> SearchProducts(string queryStr);
 
+        List<VendorBranches> GetAllVendorBranches();
+
+        VendorBranches SelectBranch(int id);
+
+        
         
     }
 }

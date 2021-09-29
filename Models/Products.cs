@@ -26,7 +26,7 @@ namespace Models
 
         public override string ToString()
         {
-            return $"Name: {this.Name}, Price: {this.Price}, Description: {this.Description}, ID: {this.ProductId}";
+            return $"\nName: {this.Name},\n Price: {this.Price},\n Description: {this.Description}, \n id: {this.ProductId}";
 
         }
         

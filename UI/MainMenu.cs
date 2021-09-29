@@ -25,7 +25,7 @@ namespace UI
                 switch (input)
                 {
                     case "0":
-                        MenuFactory.GetMenu("login").Start();
+                        MenuFactory.GetMenu("items").Start();
                         break;
 
                     case "1":

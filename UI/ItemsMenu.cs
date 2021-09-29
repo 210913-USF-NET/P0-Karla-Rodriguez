@@ -1,7 +1,9 @@
 using System;
 using Models;
 using P0BL;
+using System.Linq;
 using System.Collections.Generic;
+using   UI;
 
 
 namespace UI
@@ -9,10 +11,16 @@ namespace UI
     public class ItemsMenu : IMenu
     {
         private IBL _bl;
+        
+        private CustomerService _custoService;
 
-        private ItemsMenu(IBL bl)
+        private CustomerService _prodService;
+        
+        public ItemsMenu(IBL bl, CustomerService custoService, CustomerService prodService)
         {
             _bl = bl;
+            _custoService = custoService;
+            _prodService = prodService;
         }
 
         public void Start() {
@@ -21,8 +29,8 @@ namespace UI
             {
                 Console.Clear();
                 Console.WriteLine("Shop for items for your feathered friend!");
-                Console.WriteLine("0 - See full list of products");
-                Console.WriteLine("1 - I'm looking for something specific");
+                Console.WriteLine("0 - Show Me Everything For Sale");
+                Console.WriteLine("1 - I'm Ready to Place and Order!");
                 Console.WriteLine("x - Go Back");
 
                 switch(Console.ReadLine())
@@ -30,11 +38,9 @@ namespace UI
                     case "0":
                     BrowseItems();
                     break;
-
                     case "1":
-                    SearchForItem();
+                    AddOrder();
                     break;
-
                     case "x":
                     exit = true;
                     break;
@@ -55,20 +61,66 @@ namespace UI
                 {
                     Console.WriteLine(prods.ToString());
                 }
-            }
+            } Console.WriteLine("Hit Enter To Return To The Menu");
+            Console.ReadLine();
         }
-
-        private void SearchForItem()
+        private void AddOrder()
         {
-            Console.WriteLine("Search for item");
-            List<Products> searchResult = _bl.SearchProducts(Console.ReadLine());
+            Console.WriteLine("Search firstname");
+            List<Customers> searchResult = _bl.SearchCustomers(Console.ReadLine());
+            if(searchResult == null || searchResult.Count == 0)
+            {
+                Console.WriteLine("No matching name : (");
+                Console.ReadLine();
+                return;
+            }
+            Customers selectedCustomer = _custoService.SelectCustomers("Enter", searchResult);
+            Console.WriteLine($"Hello {selectedCustomer.FirstName}! ");
+            
+        
+            Console.WriteLine("Please enter the item: ");
+
+            List<Products> searchResultProd = _bl.SearchProducts(Console.ReadLine());
             if(searchResult == null || searchResult.Count == 0)
             {
                 Console.WriteLine("Couldn't find anything like that...try again!");
                 return;
             }
-
-    
+                Products selectedProducts  = _prodService.SelectAProduct ("Looks like it's available!", searchResultProd);
+            
+            Orders orderToAdd = new Orders();
+            orderToAdd.CustomerId = selectedCustomer.CustomerId;
+            orderToAdd.ProductId = selectedProducts.ProductId;
+            order:
+            int userOrder;
+            bool success = int.TryParse(Console.ReadLine(), out userOrder);
+            if(!success) 
+            {
+            
+                Console.WriteLine("Invalid input");
+                Console.ReadLine();
+                goto order;
+            }
+            try
+            {
+                
+                orderToAdd.OrderId = userOrder;
+            }
+            catch (InputInvalidException e)
+            {
+                
+                Console.WriteLine(e.Message);
+                goto order;
+            }
+            finally
+            {
+                
+            }
+            
+            Orders addedOrder = _bl.AddOrder(orderToAdd);
+            Console.WriteLine("Order Processed successfully");
+            Console.WriteLine(addedOrder);
+            Console.ReadLine();
         }
     }
 }

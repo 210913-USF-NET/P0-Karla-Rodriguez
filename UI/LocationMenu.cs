@@ -9,6 +9,7 @@ namespace UI
     {
         private IBL _bl;
 
+        //unsure if this will stick around in final form...
         public LocationMenu(IBL bl)
         {
             _bl = bl;
@@ -18,7 +19,7 @@ namespace UI
             do 
             {
                 Console.Clear();
-                Console.WriteLine("Select a Location");
+                Console.WriteLine("Pick a Location for easy shopping");
                 Console.WriteLine("0 - option 1");
                 Console.WriteLine("1 - option 2");
                 Console.WriteLine("2 - option 3");
